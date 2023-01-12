@@ -30,7 +30,7 @@ class _Home_ScreenState extends State<Home_Screen> {
       // });
     ImagePicker img = ImagePicker();
     XFile? f2 = await img.pickImage(source: ImageSource.gallery);
-   // fileName = basename(f2!.path);
+   //fileName = basename(f2!.path);
     var image = imageLib.decodeImage(await f2!.readAsBytes(),);
     image = imageLib.copyResize(image!, width: 600);
     Map imagefile = await Navigator.push(
@@ -73,7 +73,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                 return Secode_screen(f1);
               },));
             },
-            child:Text("image")
+            child:Text("image"),
           ),
         ),
       ),
