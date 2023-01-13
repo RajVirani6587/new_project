@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:new_project/model/model.dart';
 import 'package:new_project/void/secode_screen.dart';
 import 'package:photofilters/filters/filters.dart';
 import 'package:photofilters/filters/preset_filters.dart';
@@ -18,29 +17,25 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
-     String? fileName;
-  List<Filter> filters = presetFiltersList;
-   File? f2;
+     File f1 = File("");
+     //String? fileName;
+    List<Filter> filters = presetFiltersList;
+     File? f2;
 
     Future getImage(context) async {
-      // ImagePicker ipick = ImagePicker();
-      // XFile? f2 = await ipick.pickImage(source: ImageSource.gallery);
-      // setState(() {
-      //   f1 = File(f2!.path);
-      // });
-    ImagePicker img = ImagePicker();
-    XFile? f2 = await img.pickImage(source: ImageSource.gallery);
-   //fileName = basename(f2!.path);
-    var image = imageLib.decodeImage(await f2!.readAsBytes(),);
-    image = imageLib.copyResize(image!, width: 600);
-    Map imagefile = await Navigator.push(
-      context,
+       ImagePicker ipick = ImagePicker();
+       XFile? f2 = await ipick.pickImage(source: ImageSource.gallery);
+         f1 = File(f2!.path);
+        var image = imageLib.decodeImage(await f1.readAsBytes(),);
+       image = imageLib.copyResize(image!, width: 600);
+       Map imagefile = await Navigator.push(
+        context,
       new MaterialPageRoute(
         builder: (context) => new PhotoFilterSelector(
           title: Text("Photo Filter Example"),
           image: image!,
           filters: presetFiltersList,
-          filename: fileName!,
+          filename: "",
           loader: Center(child: CircularProgressIndicator()),
           fit: BoxFit.contain,
         ),
@@ -54,7 +49,7 @@ class _Home_ScreenState extends State<Home_Screen> {
       print(f2!.path);
     }
   }
-  File f1 = File("");
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
