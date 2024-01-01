@@ -10,8 +10,8 @@ void main(){
      debugShowCheckedModeBanner: false,
      routes: {
        '/':(context)=>Home_Screen(),
-       // 'sec':(context)=>Secode_screen(),
-       //'image':(context)=>Photofilters_Screen(),
+        'sec':(context)=>Secode_screen(),
+       'image':(context)=>Photofilters_Screen(),
      },
    ),
   );

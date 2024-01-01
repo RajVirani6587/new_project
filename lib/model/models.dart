@@ -1,4 +1,4 @@
-class RGBA extends Object {
+class RGBA {
   final int red;
   final int green;
   final int blue;

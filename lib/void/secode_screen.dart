@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:new_project/void/home_screen.dart';
+import 'package:new_project/model/filemodel.dart';
 import 'package:new_project/void/photofilters_screen.dart';
 
 class Secode_screen extends StatefulWidget {
-  File f1;
-  Secode_screen(File this.f1);
+  const Secode_screen({Key? key}) : super(key: key);
   @override
   State<Secode_screen> createState() => _Secode_screenState();
 }
@@ -14,6 +11,7 @@ class Secode_screen extends StatefulWidget {
 class _Secode_screenState extends State<Secode_screen> {
   @override
   Widget build(BuildContext context) {
+    file data = ModalRoute.of(context)!.settings.arguments as file;
     return  WillPopScope(
       onWillPop: dialog,
       child: SafeArea(
@@ -21,9 +19,8 @@ class _Secode_screenState extends State<Secode_screen> {
           backgroundColor: Colors.black,
           appBar: AppBar(
             leading: IconButton(onPressed: (){
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                return Home_Screen();}));},
-                icon:Icon(Icons.arrow_back)),
+              Navigator.pushReplacementNamed(context,'/');},
+                icon:Icon(Icons.arrow_back),),
             backgroundColor: Colors.white12,
             title: Text("Home Screen"),
             centerTitle: true,
@@ -38,7 +35,7 @@ class _Secode_screenState extends State<Secode_screen> {
                 color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.file(widget.f1,fit: BoxFit.cover,),
+                  child: Image.file(data.imaag!,fit: BoxFit.cover,),
                 ),
               ),
               Container(height:MediaQuery.of(context).size.width*0.05,),
@@ -48,9 +45,7 @@ class _Secode_screenState extends State<Secode_screen> {
                   ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.delete), label: Text("Delete"),style: ElevatedButton.styleFrom(primary: Colors.white12)),
                   CircleAvatar(radius: 30,backgroundColor: Colors.white12,child: IconButton(onPressed: (){}, icon: Icon(Icons.image_outlined,color: Colors.white,))),
                   ElevatedButton.icon(onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                      return Photofilters_Screen(widget.f1);
-                    },));
+                    Navigator.pushReplacementNamed(context, 'image',arguments:data);
                   }, icon: Icon(Icons.arrow_forward), label: Text("Next"),style: ElevatedButton.styleFrom(primary: Colors.white12)),
                 ],
               ),
@@ -66,6 +61,6 @@ class _Secode_screenState extends State<Secode_screen> {
   }
 
   void back(){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return Home_Screen();}));
+    Navigator.pushReplacementNamed(context,'/');
   }
 }

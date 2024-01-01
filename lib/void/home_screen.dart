@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:new_project/void/secode_screen.dart';
+import 'package:new_project/model/filemodel.dart';
 import 'package:photofilters/filters/filters.dart';
 import 'package:photofilters/filters/preset_filters.dart';
  import 'package:image/image.dart' as imageLib;
@@ -63,10 +63,7 @@ class _Home_ScreenState extends State<Home_Screen> {
               setState(() {
                 f1 = File(f2!.path);
               });
-                // Navigator.pushNamed(context,'sec',arguments:f1);
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                return Secode_screen(f1);
-              },));
+                 Navigator.pushNamed(context,'sec',arguments:file(imaag: f1));
             },
             child:Text("image"),
           ),

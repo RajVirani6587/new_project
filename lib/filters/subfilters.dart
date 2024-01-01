@@ -4,7 +4,7 @@ import 'package:new_project/filters/image_filters.dart';
 import 'package:new_project/utils/convolution_kernels.dart';
 import 'package:new_project/utils/image_filter_utils.dart' as image_filter_utils;
 import 'package:new_project/utils/color_filter_utils.dart' as color_filter_utils;
-import 'package:new_project/model/models.dart';
+import 'package:photofilters/models.dart';
 
 ///The [ContrastSubFilter] class is a SubFilter class to apply [contrast] to an image.
 class ContrastSubFilter extends ColorSubFilter with ImageSubFilter {
@@ -17,7 +17,16 @@ class ContrastSubFilter extends ColorSubFilter with ImageSubFilter {
 
   ///Apply the [ContrastSubFilter] to a color.
   @override
-   RGBA  apply (RGBA color) =>color_filter_utils.contrast(color, contrast); //color_filter_utils.contrast(color, contrast);
+   RGBA  apply(RGBA color) =>color_filter_utils.contrast(color, contrast);
+
+
+
+  @override
+  RGBA applyFilter(RGBA color) {
+    throw UnimplementedError();
+  }
+
+  //color_filter_utils.contrast(color, contrast);
 }
 
 ///The [BrightnessSubFilter] class is a SubFilter class to apply [brightness] to an image.

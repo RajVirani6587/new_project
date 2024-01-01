@@ -1,12 +1,10 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:new_project/void/secode_screen.dart';
+
+import '../model/filemodel.dart';
 
 class Photofilters_Screen extends StatefulWidget {
-  File f1;
-
-  Photofilters_Screen(File this.f1);
+  const Photofilters_Screen({Key? key}) : super(key: key);
 
   @override
   State<Photofilters_Screen> createState() => _Photofilters_ScreenState();
@@ -15,13 +13,14 @@ class Photofilters_Screen extends StatefulWidget {
 class _Photofilters_ScreenState extends State<Photofilters_Screen> {
   @override
   Widget build(BuildContext context) {
+    file data = ModalRoute.of(context)!.settings.arguments as file;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.white12,
           leading: IconButton(onPressed: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return Secode_screen(widget.f1);}));
+            Navigator.pushReplacementNamed(context, 'sec');
           },
               icon:Icon(Icons.arrow_back)),
           title: Text("Photo Filter Example"),
@@ -40,10 +39,15 @@ class _Photofilters_ScreenState extends State<Photofilters_Screen> {
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.file(widget.f1,fit: BoxFit.cover,),
+                 child: Image.file(data.imaag!,fit: BoxFit.cover,),
               ),
             ),
             Container(height:MediaQuery.of(context).size.width*0.05,),
+            Container(
+              height: MediaQuery.of(context).size.height*0.1,
+              width: MediaQuery.of(context).size.width*1,
+              color: Colors.white,
+            ),
           ],
         ),
       ),
@@ -55,6 +59,6 @@ class _Photofilters_ScreenState extends State<Photofilters_Screen> {
   }
 
   void back(){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return Secode_screen(widget.f1);}));
+    Navigator.pushReplacementNamed(context, 'sec');
   }
 }
